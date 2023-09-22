@@ -15,6 +15,10 @@ builder.Services.AddTransient<IKhachHang, DAL_KhachHang>();
 builder.Services.AddTransient<IKhachHang_BLL, BLL_KhachHang>();
 builder.Services.AddTransient<INhanVien, DAL_NhanVien>();
 builder.Services.AddTransient<INhanVien_BLL, BLL_NhanVien>();
+builder.Services.AddTransient<INhaCungCap, DAL_NhaCungCap>();
+builder.Services.AddTransient<INhaCungCap_BLL, BLL_NhaCungCap>();
+builder.Services.AddTransient<ITheLoai, DAL_TheLoai>();
+builder.Services.AddTransient<ITheLoai_BLL, BLL_TheLoai>();
 
 // Add services to the container.
 
