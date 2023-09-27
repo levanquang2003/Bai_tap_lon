@@ -30,7 +30,7 @@ namespace BusinessLogicLayer
         }
         public bool Update_NV(NhanVien model)
         {
-            return (_res.Update_NV(model));
+            return _res.Update_NV(model);
         }
     }
 }
