@@ -15,12 +15,28 @@ namespace DataAccessLayer
         {
             _dbHelper = dbHelper;
         }
-        public SanPham GetSP_byID(string MaSP)
+        public SanPham sp_TimKiemSanPhamTheoTen(string TenSP)
         {
             string msgError = "";
             try
             {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_searchNV_by_MaNV",
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_TimKiemSanPhamTheoTen",
+                     "@TenSP", TenSP);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<SanPham>().FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public SanPham sp_TimKiemSanPhamTheoMa(string MaSP)
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_TimKiemSanPhamTheoMa",
                      "@MaSP", MaSP);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
@@ -31,20 +47,23 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public bool Create_SP(SanPham sp)
+        public bool sp_ThemSanPham(SanPham sp)
         {
             string msgError = "";
             try
             {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_nhanvien_create",
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_ThemSanPham",
                 "@MaSP", sp.MaSP,
-                "@TenMH", sp.TenMH,
+                "@TenSP", sp.TenSP,
                 "@Size", sp.Size,
                 "@GiaBan", sp.GiaBan,
+                "@GiaGiam", sp.GiaGiam,
                 "@MaLoai", sp.MaLoai,
                 "@SoLuongTon", sp.SoLuongTon,
+                "@SoLuongBan", sp.SoLuongBan,
                 "@ImageURL", sp.ImageUrl,
-                "@Mota", sp.Mota);
+                "@Mota", sp.Mota,
+                "@TrangThai", sp.TrangThai);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -56,20 +75,22 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public bool Update_SP(SanPham sp)
+        public bool sp_SuaThongTinSanPham(SanPham sp)
         {
             string msgError = "";
             try
             {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_nhanvien_update",
-               "@MaSP", sp.MaSP,
-                "@TenMH", sp.TenMH,
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_SuaThongTinSanPham",
+                "@MaSP", sp.MaSP,
+                "@TenSP", sp.TenSP,
                 "@Size", sp.Size,
                 "@GiaBan", sp.GiaBan,
+                "@GiaGiam", sp.GiaGiam,
                 "@MaLoai", sp.MaLoai,
                 "@SoLuongTon", sp.SoLuongTon,
                 "@ImageURL", sp.ImageUrl,
-                "@Mota", sp.Mota);
+                "@Mota", sp.Mota,
+                "@TrangThai", sp.TrangThai);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -81,12 +102,31 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public bool Delete_SP(string MaSP)
+        public bool sp_SuaSLBanSanPham(SanPham sp)
         {
             string msgError = "";
             try
             {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_DeleteNV",
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_SuaSLBanSanPham",
+                "@MaSP", sp.MaSP,
+                "@SoLuongBan", sp.SoLuongBan);
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public bool sp_XoaSanPham(string MaSP)
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_XoaSanPham",
                      "@MaSP", MaSP);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);

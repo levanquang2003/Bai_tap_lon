@@ -14,27 +14,27 @@ namespace QuanLyCuaHangVemouse.Controllers
         {
             _KhachHangBLL = KhachHangBLL;
         }
-        [Route("get_byid/{id}")]
+        [Route("TimKiemKH")]
         [HttpGet]
         public KhachHang GetKH_byID(string id)
         {
             return _KhachHangBLL.GetKH_ByID(id);
         }
-        [Route("create_khachhang")]
+        [Route("ThemKH")]
         [HttpPost]
         public KhachHang CreateKH([FromBody] KhachHang kh)
         {
             _KhachHangBLL.Create_KH(kh);
             return kh;
         }
-        [Route("update_khachhang")]
+        [Route("SuaKH")]
         [HttpPut]
         public KhachHang Update_KH([FromBody] KhachHang kh)
         {
             _KhachHangBLL.Update_KH(kh);
             return kh;
         }
-        [Route("delete_khachhang")]
+        [Route("XoaKH")]
         [HttpDelete]
         public IActionResult Delete_KH([FromBody] string MaKH)
         {

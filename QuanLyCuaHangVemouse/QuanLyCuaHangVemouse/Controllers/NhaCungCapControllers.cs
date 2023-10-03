@@ -13,27 +13,27 @@ namespace QuanLyCuaHangVemouse.Controllers
         {
             _NhaCungCapBLL = NhaCungCapBLL;
         }
-        [Route("get-byid/{id}")]
+        [Route("TimKiemNCC")]
         [HttpGet]
         public NhaCungCap GetNCCbyID(string id)
         {
             return _NhaCungCapBLL.GetNCC_byID(id);
         }
-        [Route("create-nhacungcap")]
+        [Route("ThemNCC")]
         [HttpPost]
         public NhaCungCap CreateNCC([FromBody] NhaCungCap ncc)
         {
             _NhaCungCapBLL.Create_NCC(ncc);
             return ncc;
         }
-        [Route("update_nhacungcap")]
+        [Route("SuaNCC")]
         [HttpPut]
         public NhaCungCap Update_NCC([FromBody] NhaCungCap ncc)
         {
             _NhaCungCapBLL.Update_NCC(ncc);
             return ncc;
         }
-        [Route("delete_nhacungcap")]
+        [Route("XoaNCC")]
         [HttpDelete]
         public IActionResult Delete_NCC([FromBody] string mancc)
         {

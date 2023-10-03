@@ -13,31 +13,31 @@ namespace QuanLyCuaHangVemouse.Controllers
         {
             _TheLoaiBLL = TheLoaiBLL;
         }
-        [Route("get-byid/{id}")]
+        [Route("TimKiemTL")]
         [HttpGet]
-        public TheLoai GetTLbyID(string id)
+        public TheLoai sp_TimKiemTL(string id)
         {
-            return _TheLoaiBLL.GetTL_byID(id);
+            return _TheLoaiBLL.sp_TimKiemTL(id);
         }
-        [Route("create-theloai")]
+        [Route("ThemTL")]
         [HttpPost]
-        public TheLoai CreateTL([FromBody] TheLoai tl)
+        public TheLoai sp_ThemTL([FromBody] TheLoai tl)
         {
-            _TheLoaiBLL.Create_TL(tl);
+            _TheLoaiBLL.sp_ThemTL(tl);
             return tl;
         }
-        [Route("update_theloai")]
+        [Route("SuaTL")]
         [HttpPut]
-        public TheLoai Update_TL([FromBody] TheLoai tl)
+        public TheLoai sp_SuaTL([FromBody] TheLoai tl)
         {
-            _TheLoaiBLL.Update_TL(tl);
+            _TheLoaiBLL.sp_SuaTL(tl);
             return tl;
         }
-        [Route("delete_theloai")]
+        [Route("XoaTL")]
         [HttpDelete]
-        public IActionResult Delete_TL([FromBody] string maloai)
+        public IActionResult sp_XoaTL([FromBody] string maloai)
         {
-            _TheLoaiBLL.Delete_TL(maloai);
+            _TheLoaiBLL.sp_XoaTL(maloai);
             return Ok();
         }
     }

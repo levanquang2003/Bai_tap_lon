@@ -40,7 +40,8 @@ namespace DataAccessLayer
                 "@MaNCC", ncc.MaNCC,
                 "@TenNCC", ncc.TenNCC,
                 "@DiaChi", ncc.DiaChi,
-                "@SoDienthoai", ncc.SoDienThoai);
+                "@SoDienthoai", ncc.SoDienThoai,
+                "@Email", ncc.Email);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -61,7 +62,8 @@ namespace DataAccessLayer
                 "@MaNCC", ncc.MaNCC,
                 "@TenNCC", ncc.TenNCC,
                 "@DiaChi", ncc.DiaChi,
-                "@SoDienthoai", ncc.SoDienThoai);
+                "@SoDienthoai", ncc.SoDienThoai,
+                "@Email", ncc.Email);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);

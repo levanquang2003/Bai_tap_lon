@@ -9,9 +9,9 @@ namespace DataAccessLayer.Interfaces
 {
     public partial interface ITheLoai
     {
-        bool Create_TL(TheLoai tl);
-        TheLoai GetTL_byID(string MaLoai);
-        bool Update_TL(TheLoai tl);
-        bool Delete_TL(string MaLoai);
+        bool sp_ThemTL(TheLoai tl);
+        TheLoai sp_TimKiemTL(string MaLoai);
+        bool sp_SuaTL(TheLoai tl);
+        bool sp_XoaTL(string MaLoai);
     }
 }

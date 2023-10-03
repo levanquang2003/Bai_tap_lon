@@ -15,12 +15,12 @@ namespace DataAccessLayer
         {
             _dbHelper = dbHelper;
         }
-        public TheLoai GetTL_byID(string MaLoai)
+        public TheLoai sp_TimKiemTL(string MaLoai)
         {
             string msgError = "";
             try
             {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_searchTL_by_MaTL",
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_TimKiemTL",
                      "@MaLoai", MaLoai);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
@@ -31,12 +31,12 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public bool Create_TL(TheLoai tl)
+        public bool sp_ThemTL(TheLoai tl)
         {
             string msgError = "";
             try
             {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_theloai_create",
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_ThemTL",
                 "@MaLoai", tl.MaLoai,
                 "@TenLoai", tl.TenLoai);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
@@ -50,12 +50,12 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public bool Update_TL(TheLoai tl)
+        public bool sp_SuaTL(TheLoai tl)
         {
             string msgError = "";
             try
             {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_theloai_update",
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_SuaTL",
                 "@MaLoai", tl.MaLoai,
                 "@TenLoai", tl.TenLoai);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
@@ -69,12 +69,12 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public bool Delete_TL(string MaLoai)
+        public bool sp_XoaTL(string MaLoai)
         {
             string msgError = "";
             try
             {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_DeleteTL",
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_XoaTL",
                      "@MaLoai", MaLoai);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);

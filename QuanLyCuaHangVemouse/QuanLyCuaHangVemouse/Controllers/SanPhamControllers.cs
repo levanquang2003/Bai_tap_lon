@@ -13,31 +13,44 @@ namespace QuanLyCuaHangVemouse.Controllers
         {
             _SanPhamBLL = SanPhamBLL;
         }
-        [Route("get-byid/{id}")]
+        [Route("TimKiemSanPhamTheoMa")]
         [HttpGet]
-        public SanPham GetSPbyID(string id)
+        public SanPham sp_TimKiemSanPhamTheoMa(string id)
         {
-            return _SanPhamBLL.GetSP_byID(id);
+            return _SanPhamBLL.sp_TimKiemSanPhamTheoMa(id);
         }
-        [Route("create-sanpham")]
+        [Route("TimKiemSanPhamTheoTen")]
+        [HttpGet]
+        public SanPham sp_TimKiemSanPhamTheoTen(string TenSP)
+        {
+            return _SanPhamBLL.sp_TimKiemSanPhamTheoTen(TenSP);
+        }
+        [Route("ThemSanPham")]
         [HttpPost]
-        public SanPham CreateSP([FromBody] SanPham sp)
+        public SanPham sp_ThemSanPham([FromBody] SanPham sp)
         {
-            _SanPhamBLL.Create_SP(sp);
+            _SanPhamBLL.sp_ThemSanPham(sp);
             return sp;
         }
-        [Route("update_sanpham")]
+        [Route("SuaThongTinSanPham")]
         [HttpPut]
-        public SanPham Update_SP([FromBody] SanPham sp)
+        public SanPham sp_SuaThongTinSanPham([FromBody] SanPham sp)
         {
-            _SanPhamBLL.Update_SP(sp);
+            _SanPhamBLL.sp_SuaThongTinSanPham(sp);
             return sp;
         }
-        [Route("delete_sanpham")]
-        [HttpDelete]
-        public IActionResult Delete_SP([FromBody] string masp)
+        [Route("SuaSLBanSanPham")]
+        [HttpPut]
+        public SanPham sp_SuaSLBanSanPham([FromBody] SanPham sp)
         {
-            _SanPhamBLL.Delete_SP(masp);
+            _SanPhamBLL.sp_SuaSLBanSanPham(sp);
+            return sp;
+        }
+        [Route("XoaSanPham")]
+        [HttpDelete]
+        public IActionResult Delete_SP([FromBody] string MaSP)
+        {
+            _SanPhamBLL.sp_XoaSanPham(MaSP);
             return Ok();
         }
     }

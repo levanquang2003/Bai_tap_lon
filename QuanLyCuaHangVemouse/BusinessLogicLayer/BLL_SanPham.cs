@@ -16,21 +16,29 @@ namespace BusinessLogicLayer
         {
             _res = res;
         }
-        public SanPham GetSP_byID(string id)
+        public SanPham sp_TimKiemSanPhamTheoTen(string TenSP)
         {
-            return _res.GetSP_byID(id);
+            return _res.sp_TimKiemSanPhamTheoTen(TenSP);
         }
-        public bool Create_SP(SanPham model)
+        public SanPham sp_TimKiemSanPhamTheoMa(string id)
         {
-            return _res.Create_SP(model);
+            return _res.sp_TimKiemSanPhamTheoMa(id);
         }
-        public bool Delete_SP(string MaSP)
+        public bool sp_ThemSanPham(SanPham sp)
         {
-            return _res.Delete_SP(MaSP);
+            return _res.sp_ThemSanPham(sp);
         }
-        public bool Update_SP(SanPham model)
+        public bool sp_XoaSanPham(string MaSP)
         {
-            return _res.Update_SP(model);
+            return _res.sp_XoaSanPham(MaSP);
+        }
+        public bool sp_SuaThongTinSanPham(SanPham sp)
+        {
+            return _res.sp_SuaThongTinSanPham(sp);
+        }
+        public bool sp_SuaSLBanSanPham(SanPham sp)
+        {
+            return _res.sp_SuaSLBanSanPham(sp);
         }
     }
 }

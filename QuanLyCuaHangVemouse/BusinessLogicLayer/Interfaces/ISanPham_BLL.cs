@@ -9,9 +9,11 @@ namespace BusinessLogicLayer.Interfaces
 {
     public partial interface ISanPham_BLL
     {
-        bool Create_SP(SanPham sp);
-        SanPham GetSP_byID(string MaSP);
-        bool Update_SP(SanPham sp);
-        bool Delete_SP(string MaSP);
+        bool sp_ThemSanPham(SanPham sp);
+        SanPham sp_TimKiemSanPhamTheoTen(string TenSP);
+        SanPham sp_TimKiemSanPhamTheoMa(string MaSP);
+        bool sp_SuaThongTinSanPham(SanPham sp);
+        bool sp_SuaSLBanSanPham(SanPham sp);
+        bool sp_XoaSanPham(string MaSP);
     }
 }
