@@ -21,6 +21,8 @@ builder.Services.AddTransient<ISanPham, DAL_SanPham>();
 builder.Services.AddTransient<ISanPham_BLL, BLL_SanPham>();
 builder.Services.AddTransient<ILoaiTaiKhoan, DAL_LoaiTaiKhoan>();
 builder.Services.AddTransient<ILoaiTaiKhoan_BLL, BLL_LoaiTaiKhoan>();
+builder.Services.AddTransient<ITaiKhoan, DAL_TaiKhoan>();
+builder.Services.AddTransient<ITaiKhoan_BLL, BLL_TaiKhoan>();
 
 // Add services to the container.
 
