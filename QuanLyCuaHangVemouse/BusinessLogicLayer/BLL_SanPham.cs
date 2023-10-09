@@ -14,21 +14,21 @@ namespace BusinessLogicLayer
         private ISanPham _res;
         public BLL_SanPham(ISanPham res)
         {
-            _res = res;
+            res = _res;
         }
-        public SanPham sp_TimKiemSanPhamTheoTen(string TenSP)
+        public List<SanPham> sp_TimKiemSanPhamTheoTen(string TenSP)
         {
             return _res.sp_TimKiemSanPhamTheoTen(TenSP);
         }
-        public SanPham sp_TimKiemSanPhamTheoMa(string id)
+        public List<SanPham> sp_TimKiemSanPhamTheoMa(int MaSP)
         {
-            return _res.sp_TimKiemSanPhamTheoMa(id);
+            return _res.sp_TimKiemSanPhamTheoMa(MaSP);
         }
         public bool sp_ThemSanPham(SanPham sp)
         {
             return _res.sp_ThemSanPham(sp);
         }
-        public bool sp_XoaSanPham(string MaSP)
+        public bool sp_XoaSanPham(int MaSP)
         {
             return _res.sp_XoaSanPham(MaSP);
         }
@@ -36,9 +36,9 @@ namespace BusinessLogicLayer
         {
             return _res.sp_SuaThongTinSanPham(sp);
         }
-        public bool sp_SuaSLBanSanPham(SanPham sp)
+        public bool sp_SuaSLBanSanPham(int MaSP, int SoLuongBan)
         {
-            return _res.sp_SuaSLBanSanPham(sp);
+            return _res.sp_SuaSLBanSanPham(MaSP, SoLuongBan);
         }
     }
 }

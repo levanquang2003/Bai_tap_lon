@@ -16,21 +16,21 @@ namespace BusinessLogicLayer
         {
             _res = res;
         }
-        public TheLoai sp_TimKiemTL(string id)
+        public TheLoai sp_TimKiemTL(int MaLoai)
         {
-            return _res.sp_TimKiemTL(id);
+            return _res.sp_TimKiemTL(MaLoai);
         }
-        public bool sp_ThemTL(TheLoai model)
+        public bool sp_ThemTL(TheLoai tl)
         {
-            return _res.sp_ThemTL(model);
+            return _res.sp_ThemTL(tl);
         }
-        public bool sp_XoaTL(string MaLoai)
+        public bool sp_XoaTL(int MaLoai)
         {
             return _res.sp_XoaTL(MaLoai);
         }
-        public bool sp_SuaTL(TheLoai model)
+        public bool sp_SuaTL(TheLoai tl)
         {
-            return _res.sp_SuaTL(model);
+            return _res.sp_SuaTL(tl);
         }
     }
 }

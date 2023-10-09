@@ -16,21 +16,21 @@ namespace BusinessLogicLayer
         {
             _res = res;
         }
-        public NhaCungCap GetNCC_byID(string id)
+        public NhaCungCap GetNCC_byID(int MaNCC)
         {
-            return _res.GetNCC_byID(id);
+            return _res.GetNCC_byID(MaNCC);
         }
-        public bool Create_NCC(NhaCungCap model)
+        public bool Create_NCC(NhaCungCap ncc)
         {
-            return _res.Create_NCC(model);
+            return _res.Create_NCC(ncc);
         }
-        public bool Delete_NCC(string MaNCC)
+        public bool Delete_NCC(int MaNCC)
         {
             return _res.Delete_NCC(MaNCC);
         }
-        public bool Update_NCC(NhaCungCap model)
+        public bool Update_NCC(NhaCungCap ncc)
         {
-            return (_res.Update_NCC(model));
+            return (_res.Update_NCC(ncc));
         }
     }
 }

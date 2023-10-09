@@ -9,10 +9,10 @@ namespace DataAccessLayer.Interfaces
 {
     public partial interface ILoaiTaiKhoan
     {
-        LoaiTaiKhoan sp_TimKiemLoaiTaiKhoan(string TenLoaiTK);
-        LoaiTaiKhoan sp_TimKiemLoaiTaiKhoantheoma(string MaLoaiTK);
+        List<LoaiTaiKhoan> sp_TimKiemLoaiTaiKhoan(string TenLoaiTK);
+        List<LoaiTaiKhoan> sp_TimKiemLoaiTaiKhoantheoma(int MaLoaiTK);
         bool sp_ThemLoaiTaiKhoan(LoaiTaiKhoan ltk);
         bool sp_SuaLoaiTaiKhoan(LoaiTaiKhoan ltk);
-        bool sp_XoaLoaiTaiKhoan(string MaLoaiTK);
+        bool sp_XoaLoaiTaiKhoan(int MaLoaiTK);
     }
 }

@@ -15,13 +15,13 @@ namespace QuanLyCuaHangVemouse.Controllers
         }
         [Route("TimKiemSanPhamTheoMa")]
         [HttpGet]
-        public SanPham sp_TimKiemSanPhamTheoMa(string id)
+        public List<SanPham> sp_TimKiemSanPhamTheoMa(int MaSP)
         {
-            return _SanPhamBLL.sp_TimKiemSanPhamTheoMa(id);
+            return _SanPhamBLL.sp_TimKiemSanPhamTheoMa(MaSP);
         }
         [Route("TimKiemSanPhamTheoTen")]
         [HttpGet]
-        public SanPham sp_TimKiemSanPhamTheoTen(string TenSP)
+        public List<SanPham> sp_TimKiemSanPhamTheoTen(string TenSP)
         {
             return _SanPhamBLL.sp_TimKiemSanPhamTheoTen(TenSP);
         }
@@ -41,14 +41,18 @@ namespace QuanLyCuaHangVemouse.Controllers
         }
         [Route("SuaSLBanSanPham")]
         [HttpPut]
-        public SanPham sp_SuaSLBanSanPham([FromBody] SanPham sp)
+        public IActionResult sp_SuaSLBanSanPham(int MaSP, int SoLuongBan)
         {
-            _SanPhamBLL.sp_SuaSLBanSanPham(sp);
-            return sp;
+            bool check = _SanPhamBLL.sp_SuaSLBanSanPham(MaSP, SoLuongBan);
+            if (check)
+            {
+                return Ok("Sua so luong thanh cong");
+            }
+            return BadRequest("Sua so luong khong thanh cong");
         }
         [Route("XoaSanPham")]
         [HttpDelete]
-        public IActionResult Delete_SP([FromBody] string MaSP)
+        public IActionResult Delete_SP([FromBody] int MaSP)
         {
             _SanPhamBLL.sp_XoaSanPham(MaSP);
             return Ok();

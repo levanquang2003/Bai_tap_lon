@@ -10,9 +10,9 @@ namespace BusinessLogicLayer.Interfaces
     public partial interface ILoaiTaiKhoan_BLL
     {
         bool sp_ThemLoaiTaiKhoan(LoaiTaiKhoan ltk);
-        LoaiTaiKhoan sp_TimKiemLoaiTaiKhoantheoma(string MaLoaiTK);
-        LoaiTaiKhoan sp_TimKiemLoaiTaiKhoan(string MaLoaiTK);
+        List<LoaiTaiKhoan> sp_TimKiemLoaiTaiKhoantheoma(int MaLoaiTK);
+        List<LoaiTaiKhoan> sp_TimKiemLoaiTaiKhoan(string TenLoaiTK);
         bool sp_SuaLoaiTaiKhoan(LoaiTaiKhoan ltk);
-        bool sp_XoaLoaiTaiKhoan(string MaLoaiTK);
+        bool sp_XoaLoaiTaiKhoan(int MaLoaiTK);
     }
 }

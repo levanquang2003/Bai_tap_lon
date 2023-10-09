@@ -9,9 +9,9 @@ namespace DataAccessLayer.Interfaces
 {
     public partial interface IKhachHang
     {
-        KhachHang GetKH_ByID(string MaKH);
+        KhachHang GetKH_ByID(int MaKH);
         bool Create_KH(KhachHang KH);
         bool Update_KH(KhachHang KH);
-        bool Delete_KH(string MaKH);
+        bool Delete_KH(int MaKH);
     }
 }

@@ -10,8 +10,8 @@ namespace DataAccessLayer.Interfaces
     public partial interface INhaCungCap
     {
         bool Create_NCC(NhaCungCap ncc);
-        NhaCungCap GetNCC_byID(string MaNCC);
+        NhaCungCap GetNCC_byID(int MaNCC);
         bool Update_NCC(NhaCungCap ncc);
-        bool Delete_NCC(string MaNCC);
+        bool Delete_NCC(int MaNCC);
     }
 }

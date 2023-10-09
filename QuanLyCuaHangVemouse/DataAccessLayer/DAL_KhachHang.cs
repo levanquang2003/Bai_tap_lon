@@ -15,13 +15,7 @@ namespace DataAccessLayer
         {
             _dbHelper = dbHelper;
         }
-
-        public bool Create(KhachHang KH)
-        {
-            throw new NotImplementedException();
-        }
-
-        public KhachHang GetKH_ByID(string MaKH)
+        public KhachHang GetKH_ByID(int MaKH)
         {
             string msgError = "";
             try
@@ -47,7 +41,7 @@ namespace DataAccessLayer
                 "@TenKH", KH.TenKH,
                 "@GioiTinh", KH.GioiTinh,
                 "@NgaySinh", KH.NgaySinh,
-                "@Diachi", KH.DiaChi,
+                "@Diachi", KH.Diachi,
                 "@Email", KH.Email,
                 "@SDT" , KH.SDT) ;
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
@@ -71,7 +65,7 @@ namespace DataAccessLayer
                 "@TenKH", KH.TenKH,
                 "@GioiTinh", KH.GioiTinh,
                 "@NgaySinh", KH.NgaySinh,
-                "@Diachi", KH.DiaChi,
+                "@Diachi", KH.Diachi,
                 "@Email", KH.Email,
                 "@SDT", KH.SDT);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
@@ -85,7 +79,7 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public bool Delete_KH(string MaKH)
+        public bool Delete_KH(int MaKH)
         {
             string msgError = "";
             try

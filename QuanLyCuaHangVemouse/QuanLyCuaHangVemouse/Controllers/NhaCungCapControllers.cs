@@ -15,9 +15,9 @@ namespace QuanLyCuaHangVemouse.Controllers
         }
         [Route("TimKiemNCC")]
         [HttpGet]
-        public NhaCungCap GetNCCbyID(string id)
+        public NhaCungCap GetNCCbyID(int MaNCC)
         {
-            return _NhaCungCapBLL.GetNCC_byID(id);
+            return _NhaCungCapBLL.GetNCC_byID(MaNCC);
         }
         [Route("ThemNCC")]
         [HttpPost]
@@ -35,9 +35,9 @@ namespace QuanLyCuaHangVemouse.Controllers
         }
         [Route("XoaNCC")]
         [HttpDelete]
-        public IActionResult Delete_NCC([FromBody] string mancc)
+        public IActionResult Delete_NCC([FromBody] int MaNCC)
         {
-            _NhaCungCapBLL.Delete_NCC(mancc);
+            _NhaCungCapBLL.Delete_NCC(MaNCC);
             return Ok();
         }
     }

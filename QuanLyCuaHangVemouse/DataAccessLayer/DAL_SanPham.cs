@@ -15,7 +15,7 @@ namespace DataAccessLayer
         {
             _dbHelper = dbHelper;
         }
-        public SanPham sp_TimKiemSanPhamTheoTen(string TenSP)
+        public List<SanPham>? sp_TimKiemSanPhamTheoTen(string TenSP)
         {
             string msgError = "";
             try
@@ -24,14 +24,14 @@ namespace DataAccessLayer
                      "@TenSP", TenSP);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
-                return dt.ConvertTo<SanPham>().FirstOrDefault();
+                return dt.ConvertTo<SanPham>().ToList().Count>0?dt.ConvertTo<SanPham>().ToList():null;
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception(msgError, ex);
             }
         }
-        public SanPham sp_TimKiemSanPhamTheoMa(string MaSP)
+        public List<SanPham> sp_TimKiemSanPhamTheoMa(int MaSP)
         {
             string msgError = "";
             try
@@ -40,11 +40,11 @@ namespace DataAccessLayer
                      "@MaSP", MaSP);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
-                return dt.ConvertTo<SanPham>().FirstOrDefault();
+                return dt.ConvertTo<SanPham>().ToList().Count > 0 ? dt.ConvertTo<SanPham>().ToList() : null;
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception(msgError, ex);
             }
         }
         public bool sp_ThemSanPham(SanPham sp)
@@ -61,18 +61,18 @@ namespace DataAccessLayer
                 "@MaLoai", sp.MaLoai,
                 "@SoLuongTon", sp.SoLuongTon,
                 "@SoLuongBan", sp.SoLuongBan,
-                "@ImageURL", sp.ImageUrl,
-                "@Mota", sp.Mota,
+                "@ImageURL", sp.ImageURL,
+                "@Mota", sp.MoTa,
                 "@TrangThai", sp.TrangThai);
-                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                if (!string.IsNullOrEmpty(msgError))
                 {
-                    throw new Exception(Convert.ToString(result) + msgError);
+                    throw new Exception(msgError);
                 }
-                return true;
+                return string.IsNullOrEmpty(msgError) == true ? true : false;
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception(msgError, ex);
             }
         }
         public bool sp_SuaThongTinSanPham(SanPham sp)
@@ -88,40 +88,40 @@ namespace DataAccessLayer
                 "@GiaGiam", sp.GiaGiam,
                 "@MaLoai", sp.MaLoai,
                 "@SoLuongTon", sp.SoLuongTon,
-                "@ImageURL", sp.ImageUrl,
-                "@Mota", sp.Mota,
+                "@ImageURL", sp.ImageURL,
+                "@Mota", sp.MoTa,
                 "@TrangThai", sp.TrangThai);
-                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                if (!string.IsNullOrEmpty(msgError))
                 {
-                    throw new Exception(Convert.ToString(result) + msgError);
+                    throw new Exception(msgError);
                 }
-                return true;
+                return string.IsNullOrEmpty(msgError) == true ? true : false;
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception(msgError, ex);
             }
         }
-        public bool sp_SuaSLBanSanPham(SanPham sp)
+        public bool sp_SuaSLBanSanPham(int MaSP, int SoLuongBan)
         {
             string msgError = "";
             try
             {
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_SuaSLBanSanPham",
-                "@MaSP", sp.MaSP,
-                "@SoLuongBan", sp.SoLuongBan);
-                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                "@MaSP", MaSP,
+                "@SoLuongBan", SoLuongBan);
+                if (!string.IsNullOrEmpty(msgError))
                 {
-                    throw new Exception(Convert.ToString(result) + msgError);
+                    throw new Exception(msgError);
                 }
-                return true;
+                return string.IsNullOrEmpty(msgError) == true ? true : false;
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception(msgError, ex);
             }
         }
-        public bool sp_XoaSanPham(string MaSP)
+        public bool sp_XoaSanPham(int MaSP)
         {
             string msgError = "";
             try
@@ -130,11 +130,11 @@ namespace DataAccessLayer
                      "@MaSP", MaSP);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
-                return true;
+                return string.IsNullOrEmpty(msgError) == true ? true : false;
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception(msgError, ex);
             }
         }
     }

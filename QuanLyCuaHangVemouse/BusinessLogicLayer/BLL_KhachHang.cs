@@ -17,15 +17,15 @@ namespace BusinessLogicLayer
         {
             _res = res;
         }
-        public KhachHang GetKH_ByID(string id)
+        public KhachHang GetKH_ByID(int MaKH)
         {
-            return _res.GetKH_ByID(id);
+            return _res.GetKH_ByID(MaKH);
         }
         public bool Create_KH(KhachHang model)
         {
             return _res.Create_KH(model);
         }
-        public bool Delete_KH(string MaKH)
+        public bool Delete_KH(int MaKH)
         {
             return _res.Delete_KH(MaKH);
         }

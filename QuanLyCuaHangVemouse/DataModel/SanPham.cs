@@ -8,7 +8,7 @@ namespace DataModel
 {
     public class SanPham
     {
-        public string MaSP { get; set; }
+        public int MaSP { get; set; }
         public string TenSP { get; set;}
         public string Size { get; set;}
         public float GiaBan { get; set;}
@@ -16,9 +16,8 @@ namespace DataModel
         public string MaLoai { get; set;}
         public int SoLuongTon { get; set;}
         public int SoLuongBan { get; set;}
-        public string ImageUrl { get; set;}
-        public string Mota { get; set;}
+        public string ImageURL { get; set;}
+        public string MoTa { get; set;}
         public string TrangThai { get; set;}
-
     }
 }

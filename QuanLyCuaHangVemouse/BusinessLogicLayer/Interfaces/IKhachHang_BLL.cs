@@ -12,8 +12,8 @@ namespace BusinessLogicLayer.Interfaces
     public partial interface IKhachHang_BLL
     {
         bool Create_KH(KhachHang kh);
-        KhachHang GetKH_ByID(string MaKH);
+        KhachHang GetKH_ByID(int MaKH);
         bool Update_KH(KhachHang kh);
-        bool Delete_KH(string MaKH);
+        bool Delete_KH(int MaKH);
     }
 }

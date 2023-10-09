@@ -15,7 +15,7 @@ namespace DataAccessLayer
         {
             _dbHelper = dbHelper;
         }
-        public TheLoai sp_TimKiemTL(string MaLoai)
+        public TheLoai sp_TimKiemTL(int MaLoai)
         {
             string msgError = "";
             try
@@ -69,7 +69,7 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public bool sp_XoaTL(string MaLoai)
+        public bool sp_XoaTL(int MaLoai)
         {
             string msgError = "";
             try

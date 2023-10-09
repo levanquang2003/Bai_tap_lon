@@ -16,11 +16,11 @@ namespace BusinessLogicLayer
         {
             _res = res;
         }
-        public LoaiTaiKhoan sp_TimKiemLoaiTaiKhoan(string TenLoaiTK)
+        public List<LoaiTaiKhoan> sp_TimKiemLoaiTaiKhoan(string TenLoaiTK)
         {
             return _res.sp_TimKiemLoaiTaiKhoan(TenLoaiTK);
         }
-        public LoaiTaiKhoan sp_TimKiemLoaiTaiKhoantheoma(string MaLoaiTK)
+        public List<LoaiTaiKhoan> sp_TimKiemLoaiTaiKhoantheoma(int MaLoaiTK)
         {
             return _res.sp_TimKiemLoaiTaiKhoantheoma(MaLoaiTK);
         }
@@ -28,7 +28,7 @@ namespace BusinessLogicLayer
         {
             return _res.sp_ThemLoaiTaiKhoan(ltk);
         }
-        public bool sp_XoaLoaiTaiKhoan(string MaLoaiTK)
+        public bool sp_XoaLoaiTaiKhoan(int MaLoaiTK)
         {
             return _res.sp_XoaLoaiTaiKhoan(MaLoaiTK);
         }

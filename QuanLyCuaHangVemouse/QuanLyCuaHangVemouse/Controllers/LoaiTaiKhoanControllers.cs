@@ -15,15 +15,15 @@ namespace QuanLyCuaHangVemouse.Controllers
         }
         [Route("TimKiemLoaiTKTheoMa")]
         [HttpGet]
-        public LoaiTaiKhoan sp_TimKiemLoaiTaiKhoantheoma(string MaLoaiTK)
+        public List<LoaiTaiKhoan> sp_TimKiemLoaiTaiKhoantheoma(int MaLoaiTK)
         {
             return _LoaiTKBLL.sp_TimKiemLoaiTaiKhoantheoma(MaLoaiTK);
         }
         [Route("TimKiemLoaiTKTheoTen")]
         [HttpGet]
-        public LoaiTaiKhoan sp_TimKiemLoaiTaiKhoan(string TenSP)
+        public List<LoaiTaiKhoan> sp_TimKiemLoaiTaiKhoan(string TenLoaiTK)
         {
-            return _LoaiTKBLL.sp_TimKiemLoaiTaiKhoan(TenSP);
+            return _LoaiTKBLL.sp_TimKiemLoaiTaiKhoan(TenLoaiTK);
         }
         [Route("ThemLoaiTK")]
         [HttpPost]
@@ -41,7 +41,7 @@ namespace QuanLyCuaHangVemouse.Controllers
         }
         [Route("XoaLoaiTK")]
         [HttpDelete]
-        public IActionResult sp_XoaLoaiTaiKhoan([FromBody] string MaLoaiTK)
+        public IActionResult sp_XoaLoaiTaiKhoan([FromBody] int MaLoaiTK)
         {
             _LoaiTKBLL.sp_XoaLoaiTaiKhoan(MaLoaiTK);
             return Ok();

@@ -11,7 +11,7 @@ namespace DataModel
         public string TenTK { get; set; }
         public string MatKhau { get; set; }
         public string Email { get; set; }
-        public string MaLoaiTK { get; set; }
+        public int MaLoaiTK { get; set; }
         public string HoTen { get; set; }
         public string DiaChi { get; set; }
         public string SDT { get; set; }

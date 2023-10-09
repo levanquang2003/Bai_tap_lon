@@ -16,9 +16,9 @@ namespace QuanLyCuaHangVemouse.Controllers
         }
         [Route("TimKiemKH")]
         [HttpGet]
-        public KhachHang GetKH_byID(string id)
+        public KhachHang GetKH_byID(int MaKH)
         {
-            return _KhachHangBLL.GetKH_ByID(id);
+            return _KhachHangBLL.GetKH_ByID(MaKH);
         }
         [Route("ThemKH")]
         [HttpPost]
@@ -36,7 +36,7 @@ namespace QuanLyCuaHangVemouse.Controllers
         }
         [Route("XoaKH")]
         [HttpDelete]
-        public IActionResult Delete_KH([FromBody] string MaKH)
+        public IActionResult Delete_KH([FromBody] int MaKH)
         {
             _KhachHangBLL.Delete_KH(MaKH);
             return Ok();

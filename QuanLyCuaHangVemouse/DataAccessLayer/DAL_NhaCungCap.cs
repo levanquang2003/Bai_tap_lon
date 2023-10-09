@@ -15,7 +15,7 @@ namespace DataAccessLayer
         {
             _dbHelper = dbHelper;
         }
-        public NhaCungCap GetNCC_byID(string MaNCC)
+        public NhaCungCap GetNCC_byID(int MaNCC)
         {
             string msgError = "";
             try
@@ -40,7 +40,7 @@ namespace DataAccessLayer
                 "@MaNCC", ncc.MaNCC,
                 "@TenNCC", ncc.TenNCC,
                 "@DiaChi", ncc.DiaChi,
-                "@SoDienthoai", ncc.SoDienThoai,
+                "@SoDienthoai", ncc.SoDienthoai,
                 "@Email", ncc.Email);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
@@ -62,7 +62,7 @@ namespace DataAccessLayer
                 "@MaNCC", ncc.MaNCC,
                 "@TenNCC", ncc.TenNCC,
                 "@DiaChi", ncc.DiaChi,
-                "@SoDienthoai", ncc.SoDienThoai,
+                "@SoDienthoai", ncc.SoDienthoai,
                 "@Email", ncc.Email);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
@@ -75,7 +75,7 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public bool Delete_NCC(string MaNCC)
+        public bool Delete_NCC(int MaNCC)
         {
             string msgError = "";
             try

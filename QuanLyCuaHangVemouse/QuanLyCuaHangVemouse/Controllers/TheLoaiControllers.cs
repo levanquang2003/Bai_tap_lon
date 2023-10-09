@@ -15,9 +15,9 @@ namespace QuanLyCuaHangVemouse.Controllers
         }
         [Route("TimKiemTL")]
         [HttpGet]
-        public TheLoai sp_TimKiemTL(string id)
+        public TheLoai sp_TimKiemTL(int MaLoai)
         {
-            return _TheLoaiBLL.sp_TimKiemTL(id);
+            return _TheLoaiBLL.sp_TimKiemTL(MaLoai);
         }
         [Route("ThemTL")]
         [HttpPost]
@@ -35,9 +35,9 @@ namespace QuanLyCuaHangVemouse.Controllers
         }
         [Route("XoaTL")]
         [HttpDelete]
-        public IActionResult sp_XoaTL([FromBody] string maloai)
+        public IActionResult sp_XoaTL([FromBody] int MaLoai)
         {
-            _TheLoaiBLL.sp_XoaTL(maloai);
+            _TheLoaiBLL.sp_XoaTL(MaLoai);
             return Ok();
         }
     }

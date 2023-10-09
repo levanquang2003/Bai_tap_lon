@@ -8,7 +8,7 @@ namespace DataModel
 {
     public class LoaiTaiKhoan
     {
-        public string MaLoaiTK { get; set; }
+        public int MaLoaiTK { get; set; }
         public string TenLoaiTK { get;set; }
     }
 }

@@ -15,13 +15,7 @@ namespace DataAccessLayer
         {
             _dbHelper = dbHelper;
         }
-
-        public bool Create(LoaiTaiKhoan LoaiTK)
-        {
-            throw new NotImplementedException();
-        }
-
-        public LoaiTaiKhoan sp_TimKiemLoaiTaiKhoan(string TenLoaiTK)
+        public List<LoaiTaiKhoan> sp_TimKiemLoaiTaiKhoan(string TenLoaiTK)
         {
             string msgError = "";
             try
@@ -30,14 +24,14 @@ namespace DataAccessLayer
                      "@TenLoaiTK", TenLoaiTK);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
-                return dt.ConvertTo<LoaiTaiKhoan>().FirstOrDefault();
+                return dt.ConvertTo<LoaiTaiKhoan>().ToList();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public LoaiTaiKhoan sp_TimKiemLoaiTaiKhoantheoma(string MaLoaiTK)
+        public List<LoaiTaiKhoan> sp_TimKiemLoaiTaiKhoantheoma(int MaLoaiTK)
         {
             string msgError = "";
             try
@@ -46,7 +40,7 @@ namespace DataAccessLayer
                      "@MaLoaiTK", MaLoaiTK);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
-                return dt.ConvertTo<LoaiTaiKhoan>().FirstOrDefault();
+                return dt.ConvertTo<LoaiTaiKhoan>().ToList();
             }
             catch (Exception ex)
             {
@@ -91,7 +85,7 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public bool sp_XoaLoaiTaiKhoan(string MaLoaiTK)
+        public bool sp_XoaLoaiTaiKhoan(int MaLoaiTK)
         {
             string msgError = "";
             try
