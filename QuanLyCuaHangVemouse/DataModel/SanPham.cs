@@ -13,7 +13,7 @@ namespace DataModel
         public string Size { get; set;}
         public float GiaBan { get; set;}
         public float GiaGiam { get; set;}
-        public string MaLoai { get; set;}
+        public int MaLoai { get; set;}
         public int SoLuongTon { get; set;}
         public int SoLuongBan { get; set;}
         public string ImageURL { get; set;}

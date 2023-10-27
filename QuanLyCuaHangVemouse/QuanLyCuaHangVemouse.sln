@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLyCuaHangVemouse", "QuanLyCuaHangVemouse\QuanLyCuaHangVemouse.csproj", "{A0ACE65B-9ACC-4673-A0D7-1D2C426C87FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API_Admin", "QuanLyCuaHangVemouse\API_Admin.csproj", "{A0ACE65B-9ACC-4673-A0D7-1D2C426C87FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{528B8AC8-7C1D-4935-9A22-9F99032A056D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{528B8AC8-7C1D-4935-9A22-9F99032A056D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModel", "DataModel\DataModel.csproj", "{1C490475-6C41-4328-A749-EE9CBD1CA841}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataModel", "DataModel\DataModel.csproj", "{1C490475-6C41-4328-A749-EE9CBD1CA841}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{6CDE5A68-C740-46EC-86AE-9AC1E7F8EFBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{6CDE5A68-C740-46EC-86AE-9AC1E7F8EFBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_User", "API_User\API_User.csproj", "{14538FE8-DFCC-4ED7-BE99-3801DB6EA72F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{6CDE5A68-C740-46EC-86AE-9AC1E7F8EFBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CDE5A68-C740-46EC-86AE-9AC1E7F8EFBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CDE5A68-C740-46EC-86AE-9AC1E7F8EFBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14538FE8-DFCC-4ED7-BE99-3801DB6EA72F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14538FE8-DFCC-4ED7-BE99-3801DB6EA72F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14538FE8-DFCC-4ED7-BE99-3801DB6EA72F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14538FE8-DFCC-4ED7-BE99-3801DB6EA72F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

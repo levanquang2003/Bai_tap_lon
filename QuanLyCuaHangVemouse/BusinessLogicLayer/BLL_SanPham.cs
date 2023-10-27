@@ -14,7 +14,12 @@ namespace BusinessLogicLayer
         private ISanPham _res;
         public BLL_SanPham(ISanPham res)
         {
-            res = _res;
+            _res = res;
+        }
+
+        public List<SanPham> SearchSP(int pageIndex, int pageSize, out int total, string TenSanPham, string TenTheLoai, string giatien)
+        {
+            return _res.SearchSP(pageIndex, pageSize, out total, TenSanPham, TenTheLoai, giatien);
         }
         public List<SanPham> sp_TimKiemSanPhamTheoTen(string TenSP)
         {

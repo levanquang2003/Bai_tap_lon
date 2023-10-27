@@ -37,7 +37,6 @@ namespace DataAccessLayer
             try
             {
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_nhacungcap_create",
-                "@MaNCC", ncc.MaNCC,
                 "@TenNCC", ncc.TenNCC,
                 "@DiaChi", ncc.DiaChi,
                 "@SoDienthoai", ncc.SoDienthoai,

@@ -37,7 +37,6 @@ namespace DataAccessLayer
             try
             {
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_ThemTL",
-                "@MaLoai", tl.MaLoai,
                 "@TenLoai", tl.TenLoai);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {

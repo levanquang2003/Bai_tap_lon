@@ -953,9 +953,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\year-3-university\\lập trình hướng dịch vụ\\BaiTapLon\\QuanLyCuaHangVemouse\\QuanLyCuaHangVemouse\\QuanLyCuaHangVemouse.csproj",
-      "projectName": "QuanLyCuaHangVemouse",
-      "projectPath": "D:\\year-3-university\\lập trình hướng dịch vụ\\BaiTapLon\\QuanLyCuaHangVemouse\\QuanLyCuaHangVemouse\\QuanLyCuaHangVemouse.csproj",
+      "projectUniqueName": "D:\\year-3-university\\lập trình hướng dịch vụ\\BaiTapLon\\QuanLyCuaHangVemouse\\QuanLyCuaHangVemouse\\API_Admin.csproj",
+      "projectName": "API_Admin",
+      "projectPath": "D:\\year-3-university\\lập trình hướng dịch vụ\\BaiTapLon\\QuanLyCuaHangVemouse\\QuanLyCuaHangVemouse\\API_Admin.csproj",
       "packagesPath": "C:\\Users\\QUẢNG\\.nuget\\packages\\",
       "outputPath": "D:\\year-3-university\\lập trình hướng dịch vụ\\BaiTapLon\\QuanLyCuaHangVemouse\\QuanLyCuaHangVemouse\\obj\\",
       "projectStyle": "PackageReference",

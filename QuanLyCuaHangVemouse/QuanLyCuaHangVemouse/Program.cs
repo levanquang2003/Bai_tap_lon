@@ -23,7 +23,8 @@ builder.Services.AddTransient<ILoaiTaiKhoan, DAL_LoaiTaiKhoan>();
 builder.Services.AddTransient<ILoaiTaiKhoan_BLL, BLL_LoaiTaiKhoan>();
 builder.Services.AddTransient<ITaiKhoan, DAL_TaiKhoan>();
 builder.Services.AddTransient<ITaiKhoan_BLL, BLL_TaiKhoan>();
-
+builder.Services.AddTransient<IHoaDonBan, DAL_HoaDonBan>();
+builder.Services.AddTransient<IHoaDonBan_BLL, BLL_HoaDonBan>();
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -39,6 +40,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 

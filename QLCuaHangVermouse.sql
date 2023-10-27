@@ -257,9 +257,8 @@ SELECT * FROM dbo.ChiTietHoaDonBan
 
 ------------------KHÁCH HÀNG----------------------
 --Thêm Khách hàng
-CREATE PROC [dbo].[sp_khachhang_create]
+ALTER PROC [dbo].[sp_khachhang_create]
 (	
-	@MaKH INT,
 	@TenKH NVARCHAR(50),
 	@GioiTinh NVARCHAR(5),
 	@NgaySinh DATE,
@@ -269,7 +268,7 @@ CREATE PROC [dbo].[sp_khachhang_create]
 )
 AS 
 BEGIN
-INSERT INTO KhachHang(MaKH,TenKH,GioiTinh,NgaySinh,DiaChi,Email,SDT) VALUES (@MaKH,@TenKH,@GioiTinh,@NgaySinh,@DiaChi,@Email,@SDT)
+INSERT INTO KhachHang(TenKH,GioiTinh,NgaySinh,DiaChi,Email,SDT) VALUES (@TenKH,@GioiTinh,@NgaySinh,@DiaChi,@Email,@SDT)
 END
 
 -----Tìm kiếm khách hàng theo mã
@@ -305,15 +304,14 @@ END
 
  -------------------NHÀ CUNG CẤP---------------------
  ---Thủ tục thêm nhà cung cấp
-CREATE PROC sp_nhacungcap_create 
- @MaNCC INT,
+ALTER PROC sp_nhacungcap_create 
  @TenNCC NVARCHAR(50),
  @DiaChi NVARCHAR(100),
  @SoDienthoai VARCHAR(10),
  @Email NVARCHAR(100)
 AS
 BEGIN
-	INSERT INTO NhaCungCap(MaNCC, TenNCC, DiaChi, SoDienThoai, Email) VALUES (@MaNCC,@TenNCC,@DiaChi,@SoDienthoai,@Email)
+	INSERT INTO NhaCungCap(TenNCC, DiaChi, SoDienThoai, Email) VALUES (@TenNCC,@DiaChi,@SoDienthoai,@Email)
 END
 
  -----Tìm kiếm nhà cung cấp theo Mã NCC
@@ -346,12 +344,11 @@ END
 
  -----------------------THỂ LOẠI---------------------
  ---Thủ tục thêm thể loại
-CREATE PROC sp_ThemTL 
- @MaLoai INT,
+ALTER PROC sp_ThemTL 
  @TenLoai NVARCHAR(50)
 AS
 BEGIN
-	INSERT INTO TheLoai(MaLoai, TenLoai) VALUES (@MaLoai,@TenLoai)
+	INSERT INTO TheLoai(TenLoai) VALUES (@TenLoai)
 END
 
  -----Tìm kiếm thể loại theo Mã Loại
@@ -382,34 +379,34 @@ END
 ---------------------------SẢN PHẨM---------------------------
 --Thêm Sản phẩm
 CREATE PROCEDURE sp_ThemSanPham
-	@MaSP NCHAR(10),
     @TenSP NVARCHAR(50),
 	@Size CHAR(5),
 	@GiaBan FLOAT,
 	@GiaGiam FLOAT,
-    @MaLoai NCHAR(10),
+    @MaLoai INT,
     @SoLuongTon INT,
 	@SoLuongBan INT,
-    @ImageURL NVARCHAR(250),
-    @MoTa NVARCHAR(250),
+    @ImageURL NVARCHAR(500),
+    @MoTa NVARCHAR(500),
     @TrangThai NVARCHAR(50)
 AS
 BEGIN
-    INSERT INTO SanPham (MaSP, TenSP, Size, GiaBan, GiaGiam, MaLoai, SoLuongTon, SoLuongBan, ImageURL, Mota, TrangThai)
-    VALUES (@MaSP, @TenSP, @Size, @GiaBan, @GiaGiam, @MaLoai, @SoLuongTon, @SoLuongBan, @ImageURL, @Mota, @TrangThai);
+    INSERT INTO SanPham (TenSP, Size, GiaBan, GiaGiam, MaLoai, SoLuongTon, SoLuongBan, ImageURL, Mota, TrangThai)
+    VALUES (@TenSP, @Size, @GiaBan, @GiaGiam, @MaLoai, @SoLuongTon, @SoLuongBan, @ImageURL, @Mota, @TrangThai);
 END;
 
 --Sửa Thông tin Sản phẩm (không sửa số lượng bán)
 CREATE PROCEDURE sp_SuaThongTinSanPham
-    @MaSP NCHAR(10),
+    @MaSP INT,
     @TenSP NVARCHAR(50),
 	@Size CHAR(5),
 	@GiaBan FLOAT,
 	@GiaGiam FLOAT,
-    @MaLoai NCHAR(10),
+    @MaLoai INT,
     @SoLuongTon INT,
-    @ImageURL NVARCHAR(250),
-    @MoTa NVARCHAR(250),
+	@SoLuongBan INT,
+    @ImageURL NVARCHAR(500),
+    @MoTa NVARCHAR(500),
     @TrangThai NVARCHAR(50)
 AS
 BEGIN
@@ -420,7 +417,7 @@ END;
 
 --Sửa thông tin số lượng bán bảng sản phẩm
 CREATE PROCEDURE sp_SuaSLBanSanPham
-    @MaSP NCHAR(10),
+    @MaSP INT,
     @SoLuongBan INT
 AS
 BEGIN
@@ -450,7 +447,7 @@ END;
 
 --Tìm kiếm sản phảm theo mã
 CREATE PROCEDURE sp_TimKiemSanPhamTheoMa
-    @MaSP NCHAR(10)
+    @MaSP INT
 AS
 BEGIN
     SELECT *
@@ -458,20 +455,72 @@ BEGIN
     WHERE sp.MaSP = @MaSP;
 END;
 
+----tạo procedure search và phân trang
+ALTER PROCEDURE sp_TimKiemVaPhanTrang
+    @page_index INT,
+    @page_size INT,
+    @ten_sanpham NVARCHAR(250) ,
+    @gia_tien VARCHAR(50) ,
+    @ten_theloai VARCHAR(250)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF @page_size = 0
+    BEGIN
+        SELECT
+            ROW_NUMBER() OVER (ORDER BY MaSP ASC) AS RowNumber, 
+          sp.*
+        FROM SanPham AS sp
+		join TheLoai as tl on sp.MaLoai=tl.MaLoai
+        WHERE
+            (@ten_sanpham ='' OR sp.TenSP LIKE '%' + @ten_sanpham + '%')
+            AND (@gia_tien ='' OR sp.GiaBan LIKE '%' + @gia_tien + '%')
+            AND (@ten_theloai ='' OR tl.TenLoai like '%'+ @ten_theloai+ '%');
+    END
+    ELSE
+    BEGIN
+        DECLARE @RecordCount INT;
+        
+        SELECT
+            ROW_NUMBER() OVER (ORDER BY MaSP ASC) AS RowNumber, 
+            sp.*
+        INTO #Results
+        FROM SanPham AS sp
+		join TheLoai as tl on sp.MaLoai=tl.MaLoai
+        WHERE
+            (@ten_sanpham ='' OR sp.TenSP LIKE '%' + @ten_sanpham + '%')
+            AND (@gia_tien ='' OR sp.GiaBan LIKE '%' + @gia_tien + '%')
+            AND (@ten_theloai ='' OR tl.TenLoai like '%'+ @ten_theloai+ '%');
+        SELECT @RecordCount = COUNT(*)
+        FROM #Results;
+
+        SELECT
+            *,
+            @RecordCount AS RecordCount
+        FROM #Results
+        WHERE
+            RowNumber BETWEEN (@page_index - 1) * @page_size + 1
+            AND ((@page_index - 1) * @page_size + 1) + @page_size - 1
+            OR @page_index = -1;
+        
+        DROP TABLE #Results;
+    END;
+END;
+
 --------------------------LOẠI TÀI KHOẢN----------------------
 -- Thêm loại tài khoản
 CREATE PROCEDURE sp_ThemLoaiTaiKhoan
-	@MaLoaiTK NCHAR(10),
     @TenLoaiTK NVARCHAR(50)
 AS
 BEGIN
-    INSERT INTO LoaiTK(MaLoaiTK ,TenLoaiTK)
-    VALUES (@MaLoaiTK, @TenLoaiTK);
+    INSERT INTO LoaiTK(TenLoaiTK)
+    VALUES (@TenLoaiTK);
 END;
 
 -- Sửa loại tài khoản
 CREATE PROCEDURE sp_SuaLoaiTaiKhoan
-    @MaLoaiTK NCHAR(10),
+    @MaLoaiTK INT,
     @TenLoaiTK NVARCHAR(50)
 AS
 BEGIN
@@ -482,7 +531,7 @@ END;
 
 -- Xóa loại tài khoản
 CREATE PROCEDURE sp_XoaLoaiTaiKhoan
-    @MaLoaiTK NCHAR(10)
+    @MaLoaiTK INT
 AS
 BEGIN
     DELETE FROM LoaiTK
@@ -500,7 +549,7 @@ END;
 
 -- Tìm kiếm loại tài khoản theo mã
 CREATE PROCEDURE sp_TimKiemLoaiTaiKhoantheoma
-    @MaLoaiTK NCHAR(10)
+    @MaLoaiTK INT
 AS
 BEGIN
     SELECT * FROM LoaiTK AS ltk
@@ -512,7 +561,7 @@ END;
 CREATE PROCEDURE sp_ThemTaiKhoan
     @TenTK NVARCHAR(50),
     @MatKhau NVARCHAR(50),
-	@MaLoaiTK NCHAR(10)
+	@MaLoaiTK INT
 AS
 BEGIN
     INSERT INTO TaiKhoan (TenTK, MatKhau, MaLoaiTK)
@@ -572,3 +621,67 @@ AS
 BEGIN
 	SELECT tk.HoTen, tk.DiaChi, tk.SDT, tk.Email From TaiKhoan as tk where tk.TenTK=@TenTK
 END
+
+----------Thủ tục bảng Hóa Đơn Bán and Chi tiết hóa đơn bán
+Create proc sp_CreateDonHangBan
+    @TrangThai BIT,
+    @NgayTao DATETIME,      
+    @TenKH NVARCHAR(50),    
+    @Diachi NVARCHAR(250),
+    @Email NVARCHAR(50),
+    @SDT NVARCHAR(50),
+    @DiaChiGiaoHang NVARCHAR(350),
+    @ThoiGianGiaoHang DATETIME,
+	@list_json_chitietHDB NVARCHAR(MAX)
+	as
+begin
+		----Tạo hóa đơn
+		insert into HoaDonBan(TrangThai,NgayTao,TenKH,Diachi,Email,SDT,DiaChiGiaoHang,ThoiGianGiaoHang)
+		values(@TrangThai,@NgayTao,@TenKH,@Diachi,@Email,@SDT,@DiaChiGiaoHang,@ThoiGianGiaoHang)
+
+		----Lấy mã hóa hơn vừa tạo xong
+		declare @MaHoaDon int 
+		set @MaHoaDon=SCOPE_IDENTITY();
+		declare @Tongtien Float;
+
+		---Thêm chi tiết hóa đơn nhập
+		if(@list_json_chitietHDB is not null)
+		begin
+			insert into ChiTietHoaDonBan(MaHD,MaSP,soLuong,giaBan,tongtien)
+			select
+			@MaHoaDon,
+			JSON_VALUE(l.value,'$.MaSP'),
+			JSON_VALUE(l.value,'$.SoLuong'),
+			JSON_VALUE(l.value,'$.GiaBan'),
+			cast(JSON_VALUE(l.value,'$.SoLuong')as int)*CAST(JSON_VALUE(l.value,'$.GiaBan')as float)
+			from openjson(@list_json_chitietHDB) as l
+		end
+		---Cập nhật giá tiền tất cả của hóa đơn
+		---lấy tổng tiền tất cả
+		declare @ThanhTien float
+		select @ThanhTien=(select SUM(ct.tongtien) from ChiTietHoaDonBan ct where ct.MaHD=@MaHoaDon)
+		----Cập nhật
+		Update HoaDonBan 
+		set HoaDonBan.ThanhTien=@ThanhTien
+	    where HoaDonBan.MaHD=@MaHoaDon
+end
+
+------Xóa đơn hàng bán
+create proc sp_Delete_DonHangBan
+@MaHD int
+as
+begin
+delete HoaDonBan 
+where HoaDonBan.MaHD=@MaHD
+end
+
+----Xác nhận đơn hàng bởi admin---
+create proc sp_XacNhan_HDB
+@MaHD int
+as
+begin
+update HoaDonBan 
+set HoaDonBan.TrangThai=1,HoaDonBan.NgayDuyet=GetDate()
+where MaHD=@MaHD
+end
+

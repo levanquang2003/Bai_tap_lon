@@ -15,7 +15,32 @@ namespace DataAccessLayer
         {
             _dbHelper = dbHelper;
         }
-        public List<SanPham>? sp_TimKiemSanPhamTheoTen(string TenSP)
+
+        public List<SanPham> SearchSP(int pageIndex, int pageSize, out int total, string TenSanPham, string TenTheLoai, string giatien)
+        {
+            string msgError = "";
+            total = 0;
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_TimKiemVaPhanTrang",
+                    "@page_index ", pageIndex,
+                    "@page_size", pageSize,
+                    "@ten_sanpham", TenSanPham,
+                    "@gia_tien", giatien,
+                    "@ten_theloai ", TenTheLoai
+                    );
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                if (dt.Rows.Count > 0) total = (int)dt.Rows[0]["RecordCount"];
+                return dt.ConvertTo<SanPham>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<SanPham> sp_TimKiemSanPhamTheoTen(string TenSP)
         {
             string msgError = "";
             try
@@ -53,7 +78,6 @@ namespace DataAccessLayer
             try
             {
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_ThemSanPham",
-                "@MaSP", sp.MaSP,
                 "@TenSP", sp.TenSP,
                 "@Size", sp.Size,
                 "@GiaBan", sp.GiaBan,
@@ -88,6 +112,7 @@ namespace DataAccessLayer
                 "@GiaGiam", sp.GiaGiam,
                 "@MaLoai", sp.MaLoai,
                 "@SoLuongTon", sp.SoLuongTon,
+                "@SoLuongBan",sp.SoLuongBan,
                 "@ImageURL", sp.ImageURL,
                 "@Mota", sp.MoTa,
                 "@TrangThai", sp.TrangThai);
